@@ -1,0 +1,2 @@
+export const WEIGHTS=Object.freeze({Critical:25,High:15,Medium:8,Low:3,Informational:0});
+export function scoreFindings(findings){const ids=new Set();let deduction=0;for(const f of findings){if(ids.has(f.id))continue;ids.add(f.id);deduction+=WEIGHTS[f.severity]??0;}const score=Math.max(0,100-deduction);const grade=score>=95?'A+':score>=90?'A':score>=85?'B+':score>=80?'B':score>=70?'C':score>=60?'D':'F';return {score,grade};}
